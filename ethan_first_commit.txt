@@ -1,4 +1,4 @@
-This will be the first commit for the project
+This will be my first commit for the project
 The basic idea we have is some sort of movie/tv show review service
 What we have accomplished so far is setting up some basics with having a group chat on Slack and the repository
 We plan on discussing the features of the project for the final product to work on
