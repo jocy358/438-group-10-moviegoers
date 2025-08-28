@@ -1,1 +1,4 @@
 hello, this is my first commit on my branch. we are thinking of creating some sort of movie review oe movie logging service for our project.
+since lecture one, we created a group chat on slack and created this repository with some branches.
+following next lecture, we will continue to plan out what exactly we want to include in our project.
+one thing that stands in the way for me is setting up react native, as i've heard some people have issues when setting it up with macOS. I hope to spend some time working on this over the weekend.
