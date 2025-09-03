@@ -11,7 +11,7 @@ export default function ProfileScreen() {
         alignItems: "center",
       }}
     >
-      <Text>Profile</Text>
+      <Text>User's Profile</Text>
     </View>
   );
 }
