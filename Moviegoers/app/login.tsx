@@ -1,6 +1,13 @@
+import React, { useEffect } from "react";
+import { getDb } from "../data/db";
 import { Text, View, TextInput, Button, StyleSheet } from "react-native";
 
 export default function LoginScreen(){
+
+    useEffect(() => {
+        getDb().catch(err => console.error("DB init failed:", err));
+    }, []);
+
     return(
         <View style={styles.container}>
             <Text style={styles.title}></Text>

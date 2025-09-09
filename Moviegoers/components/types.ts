@@ -3,6 +3,7 @@ export type Movie = {
     imdbId: string;
     title: string;
     posterURL?: string | null;
+    year?: string | null;
     type?: "movie" | "series" | "episode" | string | null;
     plot?: string | null;
     releaseDate?: string | null;
@@ -21,3 +22,9 @@ export type Genre = {
     id: number;
     name: string
 };
+
+export type User = {
+    id: number;
+    username: string;
+    password: string;
+}
