@@ -1,12 +1,28 @@
-import { Text, View, TextInput, Button, StyleSheet } from "react-native";
+import { Text, View, TextInput, Button, StyleSheet, Alert } from "react-native";
+import React, {useState} from "react";
+import {useRouter, Link} from "expo-router";
+import {signIn} from "@/src/auth/userService";
 
 export default function LoginScreen(){
+    const [username,setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const router = useRouter();
+
+    async function handleLogin(){
+        try{
+            await signIn(username, password);
+            router.replace("/");
+        }catch (e:any){
+            Alert.alert("Login Failed", e.message);
+        }
+    }
     return(
         <View style={styles.container}>
-            <Text style={styles.title}></Text>
-            <TextInput placeholder="Username" style={styles.input}/>
-            <TextInput placeholder="Password" secureTextEntry style={styles.input}/>
-            <Button title="Login" onPress={()=>{}}/>
+            <Text style={styles.title}>Login</Text>
+            <TextInput placeholder="Username" style={styles.input} value={username} onChangeText={setUsername} autoCapitalize="none"/>
+            <TextInput placeholder="Password" secureTextEntry style={styles.input} value ={password} onChangeText = {setPassword}/>
+            <Button title="Login" onPress={handleLogin}/>
+            <Link href="/signup" style={styles.link}>Create an Account</Link>
         </View>
     );
 
@@ -33,5 +49,10 @@ const styles = StyleSheet.create({
         padding: 10,
         marginBottom: 15,
         borderRadius: 5,
+    },
+    link: {
+        textAlign: "center",
+        marginTop:10,
+        color:"blue"
     },
 });
