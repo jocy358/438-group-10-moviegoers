@@ -36,6 +36,14 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 
+# SQLite databases
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.db-shm
+*.db-wal
+
 app-example
 
  Created by https://www.toptal.com/developers/gitignore/api/macos

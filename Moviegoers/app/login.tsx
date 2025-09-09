@@ -1,7 +1,8 @@
 import { Text, View, TextInput, Button, StyleSheet, Alert } from "react-native";
-import React, {useState} from "react";
+import React, {useState,useEffect} from "react";
 import {useRouter, Link} from "expo-router";
 import {signIn} from "@/src/auth/userService";
+import { getDb } from "../data/db";
 
 export default function LoginScreen(){
     const [username,setUsername] = useState("");
@@ -16,6 +17,8 @@ export default function LoginScreen(){
             Alert.alert("Login Failed", e.message);
         }
     }
+
+
     return(
         <View style={styles.container}>
             <Text style={styles.title}>Login</Text>
