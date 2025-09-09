@@ -16,8 +16,6 @@ export default function LoginScreen(){
             <Button title="Login" onPress={()=>{}}/>
         </View>
     );
-
-    
 }
 
 const styles = StyleSheet.create({
