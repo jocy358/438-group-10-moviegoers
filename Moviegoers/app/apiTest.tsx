@@ -15,12 +15,12 @@ function normalizeMovieInfo(data: any): Movie {
     };
 }
 const ApiTest = () => {
+    // const [movieData, setMovieData] = useState<Movie | null>(null);
+    const [movieTitle, setMovieTitle] = useState('');
     const [movieData, setMovieData] = useState<Movie | null>(null);
-    // const [movieTitle, setMovieTitle] = useState('');
-    // const [movieData, setMovieData] = useState(null);
 
     const fetchMovieData = () => {
-        fetch(`http://www.omdbapi.com/?t=${movieData?.title}&apikey=e95d4610`)
+        fetch(`http://www.omdbapi.com/?t=${movieTitle}&apikey=e95d4610`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Couldn't fetch movie data");
@@ -35,23 +35,10 @@ const ApiTest = () => {
             <TextInput
                 style={styles.input}
                 placeholder="Enter movie title"
-                value={movieData?.title || ''}
-                onChangeText={text =>
-                    setMovieData(prev =>
-                        prev
-                            ? { ...prev, title: text }
-                            : {
-                                id: 0,
-                                imdbId: '',
-                                title: text,
-                                posterURL: null,
-                                type: '',
-                                plot: null,
-                                releaseDate: null,
-                            }
-                    )
-                }
+                value={movieTitle}
+                onChangeText={setMovieTitle}
             />
+
             <Button title="Search" onPress={fetchMovieData} />
             {movieData && (
                 <View style={styles.result}>
@@ -87,8 +74,5 @@ const styles = StyleSheet.create({
         marginVertical: 16,
     },
 });
-
-// Tests 
-
 
 export default ApiTest;
