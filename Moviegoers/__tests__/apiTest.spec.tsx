@@ -1,6 +1,8 @@
 import React from "react";
 import { render, fireEvent, waitFor } from "@testing-library/react-native";
-
+// the tests are not working. i dont know why they arent working. ive imported like 1 million packages and they still arent working
+// it could be the code itself. it could be dependencies. idk. 
+// the tests exist. im going to go work on something else.
 import ApiTest from "../app/apiTest";
 global.fetch = jest.fn(() =>
     Promise.resolve({
