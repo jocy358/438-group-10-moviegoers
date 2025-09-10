@@ -17,6 +17,9 @@ export default function Index() {
       <Link href={"/profile_screen"}>
         Go to Profile Screen
       </Link>
+      <Link href={"/moviePage"}>
+        Go to Movie Screen
+      </Link>
     </View>
   );
 }
