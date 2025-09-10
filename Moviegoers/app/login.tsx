@@ -12,7 +12,7 @@ export default function LoginScreen(){
     async function handleLogin(){
         try{
             await signIn(username, password);
-            router.replace("/");
+            router.replace("/home");
         }catch (e:any){
             Alert.alert("Login Failed", e.message);
         }

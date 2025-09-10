@@ -1,6 +1,6 @@
 import * as SecureStore from "expo-secure-store";
-import bcrypt from "bcryptjs";
 import {getDb} from "@/data/db";
+import {insertUser} from "@/components/insertUser";
 
 /*
 https://www.npmjs.com/package/bcryptjs
@@ -14,28 +14,42 @@ export async function signUp(username: string, password: string){
 
 //this will check if the username already exists or not
 const existing = await db.getFirstAsync(`SELECT id FROM users WHERE username = ?`, [username.trim()]);
-if (existing) throw new Error("Username already taken");
+if (existing){
+     throw new Error("Username already taken");
+}
+
 
 //this will hash and save the password
-const hash = await bcrypt.hash(password, 10);
-await db.runAsync(`INSERT INTO users (username, password) VALUES (?, ?)`, [username.trim(), hash]);
-// this will auto login the user after the sign up process.
+await insertUser({ username: username.trim(), password: password });
 
 return await signIn(username, password);
 }
 //Log in an already existing user
 
-export async function signIn(username: string, password: string){
-    const db = await getDb();
-    const user = await db.getFirstAsync<{ id: number, password: string }>(`SELECT id, password FROM users WHERE username = ?`, [username.trim()]);
+export async function signIn(username: string, password: string) {
+  const db = await getDb();
 
-    if(!user || !(await bcrypt.compare(password, user.password))){
-        throw new Error("Invalid username and password");
-    }
+  if (!username || !password) {
+    throw new Error("Username and password are required.");
+  }
 
-    await SecureStore.setItemAsync(USER_ID_KEY, String(user.id));
-    return user.id;
+  const user = await db.getFirstAsync<{ id: number; password: string }>(
+    `SELECT id, password FROM users WHERE username = ?`,
+    [username.trim()]
+  );
+
+  if (!user) {
+    throw new Error("Invalid username or password");
+  }
+
+  if (user.password !== password.trim()) {
+    throw new Error("Invalid username or password");
+  }
+
+  await SecureStore.setItemAsync(USER_ID_KEY, String(user.id));
+  return user.id;
 }
+
 
 //logout the user
 
