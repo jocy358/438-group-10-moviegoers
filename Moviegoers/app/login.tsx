@@ -28,6 +28,8 @@ export default function LoginScreen(){
             <Link href="/signup" style={styles.link}>Create an Account</Link>
         </View>
     );
+
+    
 }
 
 const styles = StyleSheet.create({
