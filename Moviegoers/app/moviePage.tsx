@@ -87,13 +87,13 @@ export default function ProfileScreen() {
     //TODO: Make this page transition from search page and replce this function with code for getting movie from previous page
     useEffect(() => {getMovieByName("Cinderella")}, []);
     // console.log(selectedMovie?.title);
-    // console.log(selectedMovie?.year);
+    // console.log(selectedMovie?.year); 
 
     return (
         <ScrollView style={{flex: 1,backgroundColor: "#7dffa0ff"}}>
             <View style={styles.textarea}>
                 <Text>{selectedMovie?.title}</Text>
-                <Image source={{uri:`${selectedMovie?.posterURL}`,}} style={{width:"20%", height:"50%"}}></Image>
+                {/* <Image source={{uri:`${selectedMovie?.posterURL}`,}} style={{width:"20%", height:"50%"}}></Image> */}
             </View>
         </ScrollView>
     );
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         alignItems: "center",
         alignSelf: "center",
-        height: "50%",
+        height: 1000,
         width: '80%',
         marginBottom: 7
     }
