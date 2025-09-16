@@ -20,6 +20,7 @@ export default function ProfileScreen() {
           await insertMovie({ imdbId: movieData.imdbID, title: movieData.Title, posterURL: movieData.Poster, year: movieData.Year, type: movieData.Type, plot: movieData.Plot, releaseDate: movieData.Released});
     
           const db = await getDb();
+          
         } catch (err) {
           console.error("Error inserting movie:", err);
         }
@@ -27,8 +28,8 @@ export default function ProfileScreen() {
 
     //This function should get a movie from the API based on its title.
     //TODO: Should probably replace this so that its based on imdbID
-    const fetchMovieData = () => {
-        fetch(`http://www.omdbapi.com/?t=${movieTitle}&apikey=e95d4610`)
+    const fetchMovieData = (title: string) => {
+        fetch(`http://www.omdbapi.com/?t=${title}&apikey=e95d4610`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Couldn't fetch movie data");
@@ -60,24 +61,17 @@ export default function ProfileScreen() {
                 console.log("Movie not currently in database"); // no user found
                 try{
                     setTitle(title);
-                    fetchMovieData();
-                    if(movieData == null){
-                        setTitle("Cinderella");
-                    } else {
-                        handleInsert();
-                        setTitle(movieData.Title);
-                    }
+                    fetchMovieData(title);
+                    handleInsert();
+                    setTitle(movieData.Title);
                 } catch(error){
-
+                    console.log(error);
                 }
-                const rows = await db.getAllAsync<Movie>(
+                const rows2 = await db.getAllAsync<Movie>(
                     "SELECT * FROM movies WHERE title = ?",
-                    [movieTitle]
+                    [title]
                 );
-                setSelectedMovie(rows[0]);
-                //DEBUG CODE
-                // const rowsDebug = await db.getAllAsync("SELECT * FROM movies");
-                // console.log("Movies in DB:", rowsDebug);
+                setSelectedMovie(rows2[0]);
             }
         } catch (err) {
           console.error("Error getting user by username:", err);
@@ -85,7 +79,7 @@ export default function ProfileScreen() {
     }
 
     //TODO: Make this page transition from search page and replce this function with code for getting movie from previous page
-    useEffect(() => {getMovieByName("Cinderella")}, []);
+    useEffect(() => {getMovieByName("Cars")}, []);
     // console.log(selectedMovie?.title);
     // console.log(selectedMovie?.year); 
 
