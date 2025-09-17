@@ -68,6 +68,8 @@ export default function ProfileScreen() {
                         setTitle(movieData.Title);
                     }
                 } catch(error){
+                    console.log("Error");
+                    
 
                 }
                 const rows = await db.getAllAsync<Movie>(
