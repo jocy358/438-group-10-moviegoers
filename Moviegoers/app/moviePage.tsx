@@ -124,7 +124,7 @@ export default function MovieScreen() {
         }
     }, [imdbId]);
     // console.log(selectedMovie?.title);
-    // console.log(selectedMovie?.year);
+    // console.log(selectedMovie?.year); 
 
     return (
         <ScrollView style={{flex: 1,backgroundColor: "#7dffa0ff"}}>
