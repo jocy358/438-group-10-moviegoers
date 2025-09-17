@@ -23,6 +23,8 @@ export default function Home() {
         Go to Profile Screen
       </Link>
 
+      <Button title="Search" onPress={() => router.push("/movieSearch")}/>
+
       {/*Logout button */}
       <Button title="Logout" onPress={handleLogout}/>
     </View>
