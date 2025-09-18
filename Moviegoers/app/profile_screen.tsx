@@ -38,7 +38,7 @@ export default function ProfileScreen() {
     return (
         <View style={{flex: 1,backgroundColor: "#DFC5FE"}}>
             <View style={{ alignItems: "center", marginBottom: 7}}>
-                <Text id="profileText">{selectedUser.username}'s Profile</Text>
+                <Text id="profileText">{selectedUser ? `${selectedUser.username}'s Profile` : "Loading profile..."}</Text>
                 <Button label="Edit" onPress={onChangeUsername}></Button>
             </View>
             <View style={{backgroundColor: "#FFFFFF", borderRadius: 20, alignItems: "center", alignSelf: "center", height: '20%', width: '80%', marginBottom: 7}}>

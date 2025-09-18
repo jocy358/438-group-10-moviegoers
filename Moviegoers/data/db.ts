@@ -27,7 +27,7 @@ async function initDatabase(db: SQLite.SQLiteDatabase) {
 
     CREATE TABLE IF NOT EXISTS users (
       id INTEGER PRIMARY KEY NOT NULL,
-      username TEXT UNIQUE,
+      username TEXT UNIQUE, 
       password TEXT
     );
 
