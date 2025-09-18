@@ -22,6 +22,9 @@ export default function Home() {
       <Link href={"/profile_screen"}>
         Go to Profile Screen
       </Link>
+      <Link href={"/moviePage"}>
+        Movie Page
+      </Link>
 
       <Button title="Search" onPress={() => router.push("/movieSearch")}/>
 

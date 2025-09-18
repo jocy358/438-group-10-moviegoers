@@ -1,16 +1,22 @@
 //Background color changed to show if working
-import { Text, View, StyleSheet, ScrollView, Image } from "react-native";
+import { Text, View, StyleSheet, ScrollView, Image, TextInput } from "react-native";
 import type { Movie } from "@/components/types";
 import { useState, useEffect, useLayoutEffect } from 'react';
 import Button from "@/components/Button";
 import { getDb } from "../data/db";
 import { insertMovie } from "../components/insertMovie";
+import {addReview, getReviews} from "@/components/reviewService";
 import { useLocalSearchParams } from "expo-router";
+import { FlatList } from "react-native";
 
 
 export default function MovieScreen() {
     const { imdbId } = useLocalSearchParams<{ imdbId: string }>();
     const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
+    const [reviews, setReviews] = useState<any[]>([]);
+    const [newReview, setNewReview] = useState("");
+    const [rating, setRating] = useState("5");
+    const currentUserId = 1;
     const [movieData, setMovieData] = useState<Movie | null>(null);
 
 
@@ -25,6 +31,23 @@ export default function MovieScreen() {
           console.error("Error inserting movie:", err);
         }
     }
+    async function fetchReviews() {
+        if (!imdbId) return;
+        try{
+            const data = await getReviews(imdbId); 
+             setReviews(data);
+        }catch(err){
+            console.error("Error fetching reviews:", err);
+        }
+        
+    }
+
+  async function handleAddReview() {
+    if (!newReview.trim()) return;
+    await addReview(imdbId!, currentUserId, parseInt(rating), newReview.trim());
+    setNewReview("");
+    fetchReviews();
+  }
 
     //This function should get a movie from the API based on its title.
     //TODO: Should probably replace this so that its based on imdbID
@@ -121,21 +144,56 @@ export default function MovieScreen() {
     useEffect(() => {
         if (imdbId) {
             getMovieById(imdbId);
+            fetchReviews();
         }
     }, [imdbId]);
     // console.log(selectedMovie?.title);
     // console.log(selectedMovie?.year); 
 
+    useEffect(() => {
+  if (imdbId) (async () => {
+    const rows = await getReviews(imdbId);
+    console.log("reviews", rows);
+  })();
+}, [imdbId]);
+
+
     return (
-        <ScrollView style={{flex: 1,backgroundColor: "#7dffa0ff"}}>
-            <View style={styles.textarea}>
-                <Text>{selectedMovie?.title} ({selectedMovie?.year})</Text>
-                <Image source={{uri:`${selectedMovie?.posterURL}`,}} style={{width: 150, height: 220}}></Image>
-                <Text> Plot </Text>
-                <Text>{selectedMovie?.plot} </Text>
+  <FlatList
+        contentContainerStyle={{ backgroundColor: "#7dffa0ff", paddingBottom: 24 }}
+        data={reviews}
+        keyExtractor={(item) => item.id.toString()}
+        ListHeaderComponent={<View style={styles.textarea}>
+        <Text>{selectedMovie?.title} ({selectedMovie?.year})</Text>
+            {!!selectedMovie?.posterURL && (
+                <Image source={{ uri: selectedMovie.posterURL }} style={{ width: 150, height: 220 }} />
+            )}
+            <Text>Plot</Text>
+            <Text>{selectedMovie?.plot}</Text>
+
+            <View style={styles.reviewContainer}>
+            <Text style={styles.sectionTitle}>Reviews</Text>
+            <TextInput style={styles.reviewInput} placeholder="Write your review..." value={newReview} onChangeText={setNewReview} />
+            <TextInput style={styles.reviewInput} placeholder="Leave your rating (1-10)." keyboardType="numeric" value={rating} onChangeText={setRating} />
+            <Button onPress={handleAddReview} label="Done" />
+            {reviews.length > 0 ? (
+            reviews.map((item) => (
+            <View key={item.id} style={styles.reviewItem}>
+            <Text style={styles.reviewUser}>{item.username || "Anonymous"}</Text>
+            <Text>{item.rating}</Text>
+            <Text>{item.body}</Text>
+            <Text style={styles.reviewDate}>
+                {new Date(item.created_at).toLocaleDateString()}
+            </Text>
             </View>
-        </ScrollView>
-    );
+            ))
+            ) : (
+            <Text style={{ textAlign: "center", marginTop: 10 }}>No reviews yet.</Text>
+            )}
+            </View>
+            </View>} renderItem={undefined}  />
+);
+
 }
 
 const styles = StyleSheet.create({
@@ -148,5 +206,48 @@ const styles = StyleSheet.create({
         width: '80%',
         marginBottom: 7,
         marginTop: 5,
-    }
+    },
+
+    sectionTitle: {
+        fontSize: 20,
+        fontWeight: "bold",
+        marginBottom: 10,
+        marginTop: 10,
+        textAlign: "center",
+  },
+
+  reviewContainer: {
+    padding: 16,
+    backgroundColor: "#fff",
+    borderRadius: 12,
+    margin: 10,
+  },
+
+  reviewInput: {
+    borderWidth: 1,
+    borderColor: "#ccc",
+    padding: 8,
+    borderRadius: 6,
+    marginBottom: 8,
+  },
+
+  reviewItem: {
+    backgroundColor: "#f0f0f0",
+    padding: 10,
+    borderRadius: 6,
+    marginBottom: 8,
+  },
+
+  reviewUser: {
+    fontWeight: "600",
+    fontSize: 14,
+  },
+
+  reviewDate: {
+    fontSize: 10,
+    color: "#555",
+    marginTop: 4,
+  },
+
+  
 });
