@@ -14,8 +14,9 @@ export default function Button({ label, onPress }: Props) {
             alignItems: 'center',
             justifyContent: 'center',
             borderRadius: 25
+            
         }}>
-            <Pressable style={{ backgroundColor: "white", width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center', flexDirection: 'row', }} onPress={onPress}>
+            <Pressable style={{ backgroundColor: "white", width: '150%', height: '100%', alignItems: 'center', justifyContent: 'center', flexDirection: 'row', }} onPress={onPress}>
                 <Text>{label}</Text>
             </Pressable>
         </View>
