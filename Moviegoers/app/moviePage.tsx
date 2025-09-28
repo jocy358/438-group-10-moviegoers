@@ -27,6 +27,7 @@ export default function MovieScreen() {
           await insertMovie({ imdbId: movieData?.imdbId!, title: movieData?.title!, posterURL: movieData?.posterURL, year: movieData?.year, type: movieData?.type, plot: movieData?.plot, releaseDate: movieData?.releaseDate});
     
           const db = await getDb();
+          
         } catch (err) {
           console.error("Error inserting movie:", err);
         }
