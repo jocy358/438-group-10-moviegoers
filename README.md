@@ -25,16 +25,16 @@ Joceline Cortez-Arellano
 My role was to help find and set up the API, as well as to create unit tests with some minor styling tasks.
 
 ## What was the biggest challenge? 
-    By far the biggest challenge during this project was attempting to get Jest working for the unit tests
-    Why was it a challenge?
-    There were many dependency errors when attempting to set it up, to the point where even if it did function, it would break the rest of the app entirely.
-        How was the challenge addressed?
-    I was unfortunately not able to get the tests working, but was able to leave my files for them in the repo. I learned a lot about trying to manage dependencies and learning when to switch objectives.
-    Favorite / most interesting part of this project
-    I really enjoyed using the API to fetch movies and their respective posters, as well as stylizing the app pages.
-    If you could do it over, what would you change?
-    I would set up testing before anything else in the project to avoid dependency conflicts.
-    What is the most valuable thing you learned?
+By far the biggest challenge during this project was attempting to get Jest working for the unit tests
+## Why was it a challenge?
+There were many dependency errors when attempting to set it up, to the point where even if it did function, it would break the rest of the app entirely.
+## How was the challenge addressed?
+I was unfortunately not able to get the tests working, but was able to leave my files for them in the repo. I learned a lot about trying to manage dependencies and learning when to switch objectives.
+## Favorite / most interesting part of this project
+I really enjoyed using the API to fetch movies and their respective posters, as well as stylizing the app pages.
+## If you could do it over, what would you change?
+I would set up testing before anything else in the project to avoid dependency conflicts.
+## What is the most valuable thing you learned?
     I learned to "give up" on and switch on issues that aren't working out earlier. I think I spent too much time trying to figure Jest out, which demoralized me and burnt me out as well as ate up a lot of time I could've used to contribute in other areas.
     
 
