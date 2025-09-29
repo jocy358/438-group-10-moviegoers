@@ -1,13 +1,13 @@
 //Background color changed to show if working
-import { Text, View, StyleSheet, ScrollView, Image, TextInput } from "react-native";
-import type { Movie } from "@/components/types";
-import { useState, useEffect, useLayoutEffect } from 'react';
 import Button from "@/components/Button";
-import { getDb } from "../data/db";
-import { insertMovie } from "../components/insertMovie";
-import {addReview, getReviews} from "@/components/reviewService";
+import { addReview, deleteReview, getReviews } from "@/components/reviewService";
+import type { Movie } from "@/components/types";
 import { useLocalSearchParams } from "expo-router";
-import { FlatList } from "react-native";
+import { useEffect, useState } from 'react';
+import { FlatList, Image, StyleSheet, Text, TextInput, View, TouchableOpacity} from "react-native";
+import { insertMovie } from "../components/insertMovie";
+import { getDb } from "../data/db";
+import StarRating from "@/components/starRating";
 import { Background } from "@react-navigation/elements";
 
 
@@ -16,7 +16,7 @@ export default function MovieScreen() {
     const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
     const [reviews, setReviews] = useState<any[]>([]);
     const [newReview, setNewReview] = useState("");
-    const [rating, setRating] = useState("5");
+    const [rating, setRating] = useState<number>(0);
     const currentUserId = 1;
     const [movieData, setMovieData] = useState<Movie | null>(null);
 
@@ -46,7 +46,7 @@ export default function MovieScreen() {
 
   async function handleAddReview() {
     if (!newReview.trim()) return;
-    await addReview(imdbId!, currentUserId, parseInt(rating), newReview.trim());
+    await addReview(imdbId!, currentUserId, rating, newReview.trim());
     setNewReview("");
     fetchReviews();
   }
@@ -164,6 +164,17 @@ export default function MovieScreen() {
 }, [imdbId]);
 
 
+    async function handleDeleteReview(reviewId: number) {
+        try {
+            await deleteReview(reviewId);
+            fetchReviews();
+        } catch (err) {
+            console.error("Error deleting review:", err);
+        }
+    }
+
+
+
     return (
   <FlatList
         contentContainerStyle={{ backgroundColor: "#1C0400", paddingBottom: 24, flex: 1 }}
@@ -177,11 +188,16 @@ export default function MovieScreen() {
             <Text style={{color: "#F9F4FA"}}>Plot</Text>
             <Text style={{color: "#F9F4FA"}}>{selectedMovie?.plot}</Text>
 
+            <View style={styles.averageContainer}>
+            <Text style={styles.averageText}>Average Rating</Text>
+            </View>
+
             <View style={styles.reviewContainer}>
             <Text style={styles.sectionTitle}>Reviews</Text>
-            <TextInput style={styles.reviewInput} placeholder="Write your review..." value={newReview} onChangeText={setNewReview} placeholderTextColor={"#F9F4FA"} />
-            <TextInput style={styles.reviewInput} placeholder="Leave your rating (1-10)." keyboardType="numeric" value={rating} onChangeText={setRating} placeholderTextColor={"#F9F4FA"} />
+            <TextInput style={styles.reviewInput} placeholder="Write your review..." value={newReview} onChangeText={setNewReview} placeholderTextColor="#777"/>
+            <StarRating rating={rating} onChange={(value) => setRating(value)} />
             <Button onPress={handleAddReview} label="Done" />
+
             {reviews.length > 0 ? (
             reviews.map((item) => (
             <View key={item.id} style={styles.reviewItem}>
@@ -191,6 +207,12 @@ export default function MovieScreen() {
             <Text style={styles.reviewDate}>
                 {new Date(item.created_at).toLocaleDateString()}
             </Text>
+            <TouchableOpacity
+              style={styles.deleteButtonContainer}
+              onPress={() => handleDeleteReview(item.id)}>
+              <Text style={styles.deleteButtonText}>Delete</Text>
+            </TouchableOpacity>
+
             </View>
             ))
             ) : (
@@ -263,5 +285,45 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
 
-  
+  averageText: {
+    fontSize: 16,
+    color: "#fff",
+  },
+
+  averageScore: {
+    fontSize: 14,
+    color: "#ccc",
+    marginTop: 4,
+  },
+  deleteButtonContainer: {
+    backgroundColor: "#BE3139",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+    alignItems: "center",
+    justifyContent: "center",
+    alignSelf: "center",
+    marginTop: 10,
+    width: "50%",
+},
+
+deleteButtonText: {
+  color: "#FFFFFF",
+  fontSize: 16,
+  fontWeight: "600",
+  textAlign: "center",
+},
+
+averageContainer: {
+  backgroundColor: "#BE3139",
+  paddingVertical: 12,
+  paddingHorizontal: 20,
+  borderRadius: 12,
+  marginVertical: 10,
+  alignItems: "center",
+  justifyContent: "center",
+  width: "60%",
+  alignSelf: "center",
+},
+
 });
