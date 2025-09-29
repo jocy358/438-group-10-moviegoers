@@ -71,6 +71,33 @@ If I could do this project over, I would have liked to add more features to the 
 
 The most valuable thing I learned is that steady progress is a better way to tackle a project, rather than trying to do everything at once like I usually do.
 
+### Ethan Peregoy
+
+[pull requests](https://github.com/jocy358/438-group-10-moviegoers/pulls?q=is%3Apr+is%3Aclosed+author%3AEthanPeregoy)
+[link to issues](https://github.com/jocy358/438-group-10-moviegoers/issues?q=is%3Aissue%20state%3Aclosed%20assignee%3AEthanPeregoy)
+
+My role was to help setup the Database in order to store the information about users and movies.
+
+- What was the biggest challenge?
+
+The biggest challenge for me was trying to interact with the database. Getting the right information from it in order to be displayed was always a struggle, even at the end when there was a small issue with the posters.
+
+- How was the challenge addressed?
+
+Talking with the group about the issue and trying to figure out why it happened was a great benefit. Afterwards, reviewing the code helped with seeing why it acted in such a way and how to properly fix it.
+
+- Favorite / most interesting part of this project
+
+My favorite part probably came from the implementation of the search and its interaction with the movie page. Making sure that code could search through the API, place it in the database, then take the information out was crucial for it all to work. Once it did work though, it created a satisfying end result.
+
+- If you could do it over, what would you change?
+
+Probably my biggest change I would make is the implementation of further more quality of life features. I inititially thought of showing all movies reviewed, but it never came to fruition. There were also the actors and, most definitely, the genre object and table that was vere used in the end due to its difficulty with the API we had.
+
+- What is the most valuable thing you learned?
+
+I would say the most valuable thing I learned was the distribution of work and cooperating with each step. Making sure we were clear in our specific goals to not overlap too much made it all very smooth. We could take our steps without worry and then come together at the end.
+
 # Conclusion
 
 ## How successful was the project?
