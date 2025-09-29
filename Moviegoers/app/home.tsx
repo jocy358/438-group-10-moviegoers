@@ -52,9 +52,17 @@ export default function Home() {
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.sectionTitle}>Welcome to Movie Hub</Text>
 
-      <Button title="Profile" label="Go to Profile" onPress={() => router.push("/profile_screen")}/>
+      <TouchableOpacity style={styles.buttonContainer} onPress={() => router.push("/profile_screen")}>
+        <View style={styles.button}>
+            <Text style={styles.buttonText}>Go to Profile</Text>
+        </View>
+      </TouchableOpacity>
 
-      <Button title="Search" label="Search for a Movie:" onPress={() => router.push("/movieSearch")} />
+      <TouchableOpacity style={styles.buttonContainer} onPress={() => router.push("/movieSearch")}>
+        <View style={styles.button}>
+            <Text style={styles.buttonText}>Search for a Movie</Text>
+        </View>
+      </TouchableOpacity>
 
       <Text style={styles.sectionTitle}>Top Rated Movies:</Text>
 
@@ -76,7 +84,12 @@ export default function Home() {
           </TouchableOpacity>
         ))}
       </View>
-      <Button title="Logout" label="Logout" onPress={handleLogout} />
+
+      <TouchableOpacity style={styles.buttonContainer} onPress={handleLogout}>
+        <View style={styles.button}>
+            <Text style={styles.buttonText}>Logout</Text>
+        </View>
+      </TouchableOpacity>
 
     </ScrollView>
   );
@@ -124,18 +137,22 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 12
   },
-  button: {
-    backgroundColor: "#007AFF",
-    paddingVertical: 12,
-    paddingHorizontal: 24,
+  buttonContainer: {
+    width: "50%",
+    marginTop: 10,
+    backgroundColor: "#BE3139",
     borderRadius: 8,
-    marginVertical: 8,
-    alignItems: "center",
-    width: 200,
+    overflow: "hidden",
   },
+
+  button: {
+    paddingVertical: 12,
+    alignItems: "center",
+  },
+
   buttonText: {
-    color: "white",
-    fontSize: 16,
+    color: "#F9F4FA",
+    fontSize: 18,
     fontWeight: "600",
-  }
+  },
 });

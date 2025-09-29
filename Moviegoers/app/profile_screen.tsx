@@ -59,9 +59,9 @@ export default function ProfileScreen() {
 
     
     return (
-        <View style={{flex: 1,backgroundColor: "#DFC5FE"}}>
+        <View style={{flex: 1,backgroundColor: "#1C0400"}}>
             <View style={{ alignItems: "center", marginBottom: 7}}>
-                <Text id="profileText">{selectedUser ? `${selectedUser.username}'s Profile` : "Loading profile..."}</Text>
+                <Text style={styles.profileText} id="profileText">{selectedUser ? `${selectedUser.username}'s Profile` : "Loading profile..."}</Text>
                 {/* <Button label="Edit" onPress={onChangeUsername}></Button> */}
             </View>
             {/* <View style={{backgroundColor: "#FFFFFF", borderRadius: 20, alignItems: "center", alignSelf: "center", height: '20%', width: '80%', marginBottom: 7}}>
@@ -73,8 +73,8 @@ export default function ProfileScreen() {
             <View style={{backgroundColor: "#FFFFFF", height: '20%', width: '80%', borderRadius: 20, alignItems: "center", alignSelf: "center", marginBottom: 7}}>
                 <Text>Number of Reviews</Text>
             </View> */}
-            <ScrollView style={{backgroundColor: "#FFFFFF", height: '100%', width: '80%', borderRadius: 20,  alignSelf: "center", marginBottom: 7}}>
-                <Text style={{alignSelf: "center"}}>Recent Reviews</Text>
+            <ScrollView style={{backgroundColor: "#BE3139", height: '100%', width: '80%', borderRadius: 20,  alignSelf: "center", marginBottom: 7}}>
+                <Text style={{alignSelf: "center", color: "#F9F4FA"}}>Recent Reviews</Text>
                 {reviews.length > 0 ? (
                             reviews.map((item) => (
                             <View key={item.id} style={styles.reviewItem}>
@@ -87,7 +87,7 @@ export default function ProfileScreen() {
                             </View>
                             ))
                             ) : (
-                            <Text style={{ textAlign: "center", marginTop: 10 }}>No reviews yet.</Text>
+                            <Text style={{ textAlign: "center", marginTop: 10, color: "#F9F4FA" }}>No reviews yet.</Text>
                             )}
             </ScrollView>
         </View>
@@ -112,6 +112,13 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: "#555",
     marginTop: 4,
+  },
+
+  profileText: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "#F9F4FA",
+    marginVertical: 10,
   },
 
   
