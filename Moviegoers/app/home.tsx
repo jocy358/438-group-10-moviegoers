@@ -3,6 +3,7 @@ import Button from "@/components/Button";
 import { Link, useRouter } from "expo-router";
 import { signOut } from "@/src/auth/userService";
 import { useEffect, useState } from "react";
+import { colors, fonts, fontSizes } from "@/src/auth/themes";  
 import { TouchableOpacity } from "react-native";
 
 const topMovies = [ // IMDb IDs for top-rated movies
@@ -82,23 +83,33 @@ export default function Home() {
 }
 
 const styles = StyleSheet.create({
+  
   container: {
     paddingTop: 40,
     alignItems: "center",
     paddingBottom: 60,
+    backgroundColor: "#1C0400"
+    
   },
   sectionTitle: {
     fontSize: 22,
+    color: "#F9F4FA",
     fontWeight: "bold",
     marginVertical: 16,
     textAlign: "center",
   },
   moviesContainer: {
+    backgroundColor: "#BE3139",
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "center",
+    borderRadius: 15,            
+    marginHorizontal: 16,     
+    padding: 12,   
   },
   movieItem: {
+    color:"#F9F4FA",
+    textAlign: "center",
     margin: 10,
     alignItems: "center",
     width: 120,
@@ -111,7 +122,7 @@ const styles = StyleSheet.create({
   movieTitle: {
     marginTop: 6,
     textAlign: "center",
-    fontSize: 12,
+    fontSize: 12
   },
   button: {
     backgroundColor: "#007AFF",
