@@ -36,8 +36,9 @@ export default function MovieSearch() {
         placeholder="Search movies..."
         value={query}
         onChangeText={setQuery}
+        placeholderTextColor={"#F9F4FA"}
       />
-      <Button title="Search" onPress={searchMovies} />
+      <Button title="Search" onPress={searchMovies} color={"#BE3139"}/>
 
       {loading && <Text style={styles.loading}>Loading...</Text>}
 
@@ -67,19 +68,21 @@ export default function MovieSearch() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16, backgroundColor: "#fff" },
+  container: { flex: 1, padding: 16, backgroundColor: "#1C0400" },
   input: {
     borderWidth: 1,
-    borderColor: "#ccc",
+    borderColor: "#BE3139",
     padding: 8,
     marginBottom: 8,
     borderRadius: 4,
+    color: "#F9F4FA"
   },
   loading: { textAlign: "center", marginVertical: 10 },
   posterContainer: {
     flex: 1,
     margin: 5,
     alignItems: "center",
+    color: "#F9F4FA"
   },
   poster: {
     width: 150,

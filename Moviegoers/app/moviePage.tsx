@@ -8,6 +8,7 @@ import { FlatList, Image, StyleSheet, Text, TextInput, View, TouchableOpacity} f
 import { insertMovie } from "../components/insertMovie";
 import { getDb } from "../data/db";
 import StarRating from "@/components/starRating";
+import { Background } from "@react-navigation/elements";
 
 
 export default function MovieScreen() {
@@ -130,7 +131,11 @@ export default function MovieScreen() {
                 "SELECT * FROM movies WHERE imdb_id = ?",
                 [id]
             );
-            setSelectedMovie(rowsAfterInsert[0]);
+
+            if (rowsAfterInsert.length > 0) {
+              const movie: Movie = mapDbRowToMovie(rowsAfterInsert[0]);
+              setSelectedMovie(movie);
+            }
             //DEBUG CODE
             // const rowsDebug = await db.getAllAsync("SELECT * FROM movies");
             // console.log("Movies in DB:", rowsDebug);
@@ -172,16 +177,16 @@ export default function MovieScreen() {
 
     return (
   <FlatList
-        contentContainerStyle={{ backgroundColor: "#7dffa0ff", paddingBottom: 24 }}
+        contentContainerStyle={{ backgroundColor: "#1C0400", paddingBottom: 24, flex: 1 }}
         data={reviews}
         keyExtractor={(item) => item.id.toString()}
         ListHeaderComponent={<View style={styles.textarea}>
-        <Text>{selectedMovie?.title} ({selectedMovie?.year})</Text>
+        <Text style={{color: "#F9F4FA"}}>{selectedMovie?.title} ({selectedMovie?.year})</Text>
             {!!selectedMovie?.posterURL && (
                 <Image source={{ uri: selectedMovie.posterURL }} style={{ width: 150, height: 220 }} />
             )}
-            <Text>Plot</Text>
-            <Text>{selectedMovie?.plot}</Text>
+            <Text style={{color: "#F9F4FA"}}>Plot</Text>
+            <Text style={{color: "#F9F4FA"}}>{selectedMovie?.plot}</Text>
 
             <View style={styles.averageContainer}>
             <Text style={styles.averageText}>Average Rating</Text>
@@ -211,7 +216,7 @@ export default function MovieScreen() {
             </View>
             ))
             ) : (
-            <Text style={{ textAlign: "center", marginTop: 10 }}>No reviews yet.</Text>
+            <Text style={{ textAlign: "center", marginTop: 10, color:"#F9F4FA" }}>No reviews yet.</Text>
             )}
             </View>
             </View>} renderItem={undefined}  />
@@ -220,8 +225,9 @@ export default function MovieScreen() {
 }
 
 const styles = StyleSheet.create({
+
     textarea: {
-        backgroundColor: "#FFFFFF",
+        backgroundColor: "#BE3139",
         borderRadius: 25,
         alignItems: "center",
         alignSelf: "center",
@@ -229,6 +235,8 @@ const styles = StyleSheet.create({
         width: '80%',
         marginBottom: 7,
         marginTop: 5,
+        color: "F9F4FA"
+
     },
 
     sectionTitle: {
@@ -237,42 +245,38 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         marginTop: 10,
         textAlign: "center",
+        color: "#F9F4FA"
   },
 
   reviewContainer: {
     padding: 16,
-    backgroundColor: "#fff",
+    backgroundColor: "#1C0400",
     borderRadius: 12,
     margin: 10,
-    alignItems: "center",      
-    justifyContent: "center",  
-    width: "90%",
-    alignSelf: "center",
-  },
-
-  averageContainer: {
-    alignItems: "center",
-    marginVertical: 12,
+    color: "#F9F4FA"
   },
 
   reviewInput: {
     borderWidth: 1,
-    borderColor: "#ccc",
+    borderColor: "#BE3139",
     padding: 8,
     borderRadius: 6,
     marginBottom: 8,
+    color: "#F9F4FA"
   },
 
   reviewItem: {
-    backgroundColor: "#f0f0f0",
+    backgroundColor: "#BE3139",
     padding: 10,
     borderRadius: 6,
     marginBottom: 8,
+    color: "#F9F4FA"
   },
 
   reviewUser: {
     fontWeight: "600",
     fontSize: 14,
+    color: "#F9F4FA"
   },
 
   reviewDate: {
@@ -310,5 +314,16 @@ deleteButtonText: {
   textAlign: "center",
 },
 
-  
+averageContainer: {
+  backgroundColor: "#BE3139",
+  paddingVertical: 12,
+  paddingHorizontal: 20,
+  borderRadius: 12,
+  marginVertical: 10,
+  alignItems: "center",
+  justifyContent: "center",
+  width: "60%",
+  alignSelf: "center",
+},
+
 });

@@ -3,6 +3,8 @@ import Button from "@/components/Button";
 import { Link, useRouter } from "expo-router";
 import { signOut } from "@/src/auth/userService";
 import { useEffect, useState } from "react";
+import { colors, fonts, fontSizes } from "@/src/auth/themes";  
+import { TouchableOpacity } from "react-native";
 
 const topMovies = [ // IMDb IDs for top-rated movies
   { title: "The Shawshank Redemption", imdbId: "tt0111161" },
@@ -50,13 +52,19 @@ export default function Home() {
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.sectionTitle}>Welcome to Movie Hub</Text>
 
+      <Button title="Profile" label="Go to Profile" onPress={() => router.push("/profile_screen")}/>
+
       <Button title="Search" label="Search for a Movie:" onPress={() => router.push("/movieSearch")} />
 
       <Text style={styles.sectionTitle}>Top Rated Movies:</Text>
 
       <View style={styles.moviesContainer}>
         {topMovies.map((movie) => (
-          <Link key={movie.imdbId} href={`/moviePage/${movie.imdbId}`} style={styles.movieItem}>
+          <TouchableOpacity
+            key={movie.imdbId}
+            style={styles.movieItem}
+            onPress={() => router.push({pathname: "/moviePage", params: { imdbId: movie.imdbId }})}
+          >
             <Image
               source={{
                 uri: moviePosters[movie.imdbId] || "https://via.placeholder.com/150",
@@ -65,7 +73,7 @@ export default function Home() {
               resizeMode="cover"
             />
             <Text style={styles.movieTitle}>{movie.title}</Text>
-          </Link>
+          </TouchableOpacity>
         ))}
       </View>
       <Button title="Logout" label="Logout" onPress={handleLogout} />
@@ -75,23 +83,33 @@ export default function Home() {
 }
 
 const styles = StyleSheet.create({
+  
   container: {
     paddingTop: 40,
     alignItems: "center",
     paddingBottom: 60,
+    backgroundColor: "#1C0400"
+    
   },
   sectionTitle: {
     fontSize: 22,
+    color: "#F9F4FA",
     fontWeight: "bold",
     marginVertical: 16,
     textAlign: "center",
   },
   moviesContainer: {
+    backgroundColor: "#BE3139",
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "center",
+    borderRadius: 15,            
+    marginHorizontal: 16,     
+    padding: 12,   
   },
   movieItem: {
+    color:"#F9F4FA",
+    textAlign: "center",
     margin: 10,
     alignItems: "center",
     width: 120,
@@ -104,7 +122,20 @@ const styles = StyleSheet.create({
   movieTitle: {
     marginTop: 6,
     textAlign: "center",
-    fontSize: 12,
+    fontSize: 12
   },
-
+  button: {
+    backgroundColor: "#007AFF",
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 8,
+    marginVertical: 8,
+    alignItems: "center",
+    width: 200,
+  },
+  buttonText: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "600",
+  }
 });
