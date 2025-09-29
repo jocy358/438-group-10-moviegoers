@@ -131,5 +131,7 @@ I would say the most valuable thing I learned was the ability to actually learn.
 The project was very successful, while we had to downscale on some aspects of user interactivity, we achieved what we set out to do with a reliable search and review function on the app.
 
 ## What was the largest victory?
+The largest victory came from the completion of the reviews. The purpose of the application was for users to find movies and leave a review on them for others. Letting the movie page show the reviews with the number and the user was the biggest sign of completion, and that anything afterwards would be add-ons to it.
     
 ## Final assessment of the project
+It was a good project to see how each of us work with new people and in a timely matter. We were able to distribute the work, cooperate, and communicate with each other during the time in order to have great productivity throughout the month. This allowed us to learn more about the system and what we can expect for the future of our careers.
