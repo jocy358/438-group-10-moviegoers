@@ -13,8 +13,7 @@ Introduction
 ## How was communication managed
 We communicated in person during class time after lecture, as well as through a slack group chat
     
-## How many stories/issues were initially considered
-## How many stories/issues were completed
+## How many stories/issues were initially considered, how many stories/issues were completed
 We originally had 23 issues, of which we were able to complete around 11
 
 # Team Retrospective
