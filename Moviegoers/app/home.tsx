@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     
   },
   sectionTitle: {
-    fontSize: fontSizes.large,
+    fontSize: 22,
     color: "#F9F4FA",
     fontWeight: "bold",
     marginVertical: 16,
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
   movieTitle: {
     marginTop: 6,
     textAlign: "center",
-    fontSize: fontSizes.small,
+    fontSize: 12
   },
 
 });
