@@ -45,6 +45,32 @@ I would set up testing before anything else in the project to avoid dependency c
 I learned to "give up" on and switch on issues that aren't working out earlier. I think I spent too much time trying to figure Jest out, which demoralized me and burnt me out as well as ate up a lot of time I could've used to contribute in other areas.
     
 
+### Jacob Zamora
+
+[pull requests](https://github.com/jocy358/438-group-10-moviegoers/pulls?q=is%3Apr+author%3AJZmor+is%3Aclosed)
+[link to issues](https://github.com/jocy358/438-group-10-moviegoers/issues?q=is%3Aissue%20state%3Aclosed%20assignee%3AJZmor)
+
+My role was to create a profile page for uers as well as create the page for displaying information about individual movies.
+
+- What was the biggest challenge?
+  
+The biggest challenge for me was figuring out how to work with react.
+- Why was it a challenge?
+  
+While I had worked with android apps, javascript, and web development in previous classes, react proved to be difficult to wrap my head around since it doesn't work exactly like any of them while also utilizing many of the things I have worked with.
+- How was the challenge addressed?
+  
+I am very thankful for my teamates as they figured out a lot of the things I had struggled with, allowing me to learn from the way they went about thinks and incorporate that into my own code.
+- Favorite / most interesting part of this project
+  
+My favorite part of this project was being able to create something that I could see change in real time. Unlike in other classes, developing this project allowed me to easily see what each part of my code affected.
+- If you could do it over, what would you change?
+
+If I could do this project over, I would have liked to add more features to the pages I made, since we did not end up implementing some planned functionality.
+- What is the most valuable thing you learned?
+
+The most valuable thing I learned is that steady progress is a better way to tackle a project, rather than trying to do everything at once like I usually do.
+
 # Conclusion
 
 ## How successful was the project?
