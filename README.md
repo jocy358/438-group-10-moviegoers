@@ -98,6 +98,33 @@ Probably my biggest change I would make is the implementation of further more qu
 
 I would say the most valuable thing I learned was the distribution of work and cooperating with each step. Making sure we were clear in our specific goals to not overlap too much made it all very smooth. We could take our steps without worry and then come together at the end.
 
+### Felipe Lopez Ordaz
+
+[pull requests](https://github.com/jocy358/438-group-10-moviegoers/issues?q=state%3Aclosed%20is%3Apr%20author%3Afelipe-lopez-ordaz)
+[link to issues](https://github.com/jocy358/438-group-10-moviegoers/issues?q=is%3Aissue%20state%3Aclosed%20author%3Afelipe-lopez-ordaz)
+
+My role was to set up the login and sign up pages, and allow the users to make reviews on certain movies. I also helped with the styling of the login and sign up pages. I also initialized the react native app for us to work on.
+
+- What was the biggest challenge?
+
+The biggest challenge overall for me was figuring out how react native worked and how everything interacts with each other. Also I was having trouble with bcrypt in making the login, and I was also having trouble showing the reviews once the user had put a review down. 
+
+- How was the challenge addressed?
+
+I was able to get help from my teamates but also I was able to look at online resources like Geeks for Geeks when it came down to getting the syntax down. Also with bcrypt I decided to go with the plain username and password style for this project, but I will get better with that hopefully next project. As for the reviews I was able to find helpful sources to help me get the display down and I asked for help from my teamates of course. 
+
+- Favorite / most interesting part of this project
+
+My favorite part of the project was the process of making the review functionality for the project. I really liked being able to tackle a job and plan out how I was execute the work for the functionality. Overall it eventually ended up working although I had some hiccups along the way. Also the process of learning how to do the login and sign up page again after CST 336 and 338 was really cool as well. 
+
+- If you could do it over, what would you change?
+
+If I could do it all over again I think I would like to plan out my work a lot better and better manage my time when it came to learning about a subject and then later working on it in code. I think that if i had more time learning about bcrypt I would have been able to implement it into the project better. And overall I think planning ahead of your work is a really good trait to have and will get you further in your work. 
+
+- What is the most valuable thing you learned?
+
+I would say the most valuable thing I learned was the ability to actually learn. The ability to learn new things on my own has been the best leason I could take from this. I learned that in the project there are many rabit holes you can take when it came to implementing stuff and I am glad I was able to learn a good amount about React-Native in this project. 
+
 # Conclusion
 
 ## How successful was the project?
