@@ -38,3 +38,11 @@ export async function getReviews(imdbId: string) {
     [imdbId]
     );
 }
+
+export async function deleteReview(reviewId: number) {
+  const db = await getDb();
+  await db.runAsync(
+    `DELETE FROM reviews WHERE id = ?`,
+    [reviewId]
+  );
+}
