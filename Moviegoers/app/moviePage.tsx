@@ -188,23 +188,26 @@ export default function MovieScreen() {
             <Text style={{color: "#F9F4FA"}}>Plot</Text>
             <Text style={{color: "#F9F4FA"}}>{selectedMovie?.plot}</Text>
 
-            <View style={styles.averageContainer}>
-            <Text style={styles.averageText}>Average Rating</Text>
-            </View>
 
             <View style={styles.reviewContainer}>
             <Text style={styles.sectionTitle}>Reviews</Text>
             <TextInput style={styles.reviewInput} placeholder="Write your review..." value={newReview} onChangeText={setNewReview} placeholderTextColor="#777"/>
             <StarRating rating={rating} onChange={(value) => setRating(value)} />
-            <Button onPress={handleAddReview} label="Done" />
+              <View style={{ alignItems: 'center', marginVertical:20}}>
+                <Button onPress={handleAddReview} label="Done" />
+              </View>
+            
 
             {reviews.length > 0 ? (
             reviews.map((item) => (
             <View key={item.id} style={styles.reviewItem}>
             <Text style={styles.reviewUser}>{item.username || "Anonymous"}</Text>
-            <Text>{item.rating}</Text>
-            <Text>{item.body}</Text>
+            <View style={{ alignItems: "center" }}>
+              <Text style={styles.reviewUser}> Rating: {item.rating} </Text>
+              <Text style={styles.reviewUser}>{item.body}</Text>
+            </View>
             <Text style={styles.reviewDate}>
+                Date:
                 {new Date(item.created_at).toLocaleDateString()}
             </Text>
             <TouchableOpacity
@@ -275,26 +278,19 @@ const styles = StyleSheet.create({
 
   reviewUser: {
     fontWeight: "600",
-    fontSize: 14,
+    textAlign: "center",
+    fontSize: 19,
     color: "#F9F4FA"
   },
 
   reviewDate: {
-    fontSize: 10,
+    fontSize: 17,
     color: "#555",
     marginTop: 4,
+    textAlign: "center",
   },
 
-  averageText: {
-    fontSize: 16,
-    color: "#fff",
-  },
 
-  averageScore: {
-    fontSize: 14,
-    color: "#ccc",
-    marginTop: 4,
-  },
   deleteButtonContainer: {
     backgroundColor: "#BE3139",
     paddingVertical: 10,
